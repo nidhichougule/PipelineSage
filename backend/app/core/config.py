@@ -1,5 +1,5 @@
 from functools import lru_cache
-from typing import List, Union
+from typing import List, Optional, Union
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import json
@@ -18,6 +18,12 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
+
+    # GitHub REST API configuration
+    GITHUB_PERSONAL_ACCESS_TOKEN: Optional[str] = None
+    GITHUB_OWNER: str = "nidhichougule"
+    GITHUB_REPO: str = "PipelineSage-demo"
+    GITHUB_API_BASE_URL: str = "https://api.github.com"
 
     model_config = SettingsConfigDict(
         env_file=".env",

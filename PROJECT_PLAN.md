@@ -66,28 +66,23 @@ The output is a ranked set of **Suspected Root Causes** accompanied by concrete 
 - [x] Implement Dashboard, WorkflowRuns, Diagnosis, and Settings pages with clearly labeled mock data.
 - [x] Verify production build (vite build) and local development server.
 
-### Phase 3: GitHub Actions Demo Repository
-- **Goal**: Create a controlled, reproducible testbed repository with intentional failure modes.
-- **Controlled Failure Scenarios**:
-  1. *Success Run*: Clean build and passing pytest suite.
-  2. *Dependency Failure*: Incompatible/missing requirement in `requirements.txt` (`ModuleNotFoundError`).
-  3. *Unit Test Failure*: Intentionally failing assertion in a test case (`AssertionError`).
-  4. *Syntax Error*: Invalid Python syntax in a source file (`SyntaxError`).
-  5. *Configuration Error*: Invalid GitHub Actions YAML or bad environment variable.
-- **Verification**: Document commit hashes, workflow run IDs, and verified causes.
+### Phase 3: GitHub Actions Demo Repository [Completed]
+- [x] Create standalone testbed repository (`PipelineSage-demo`) with Python 3.11 calculator application.
+- [x] Implement five controlled scenarios: Success, Dependency, Assertion, Syntax, Configuration.
+- [x] Publish to GitHub and verify genuine execution outcomes across scenario branches.
 
-### Phase 4: GitHub API Integration Service
-- **Goal**: Build an asynchronous GitHub REST API client capable of fetching workflow metadata and logs.
-- **Key Modules**:
-  - `backend/app/services/github_service.py`: Octokit-equivalent client with rate-limit handling, pagination, and log decompression.
-  - Endpoints: `GET /api/v1/github/runs`, `GET /api/v1/github/runs/{run_id}`, `GET /api/v1/github/runs/{run_id}/logs`.
-- **Verification**: Fetch real workflow runs from the demo repository and verify parsed JSON output.
+### Phase 4: GitHub API Integration Service [Completed]
+- [x] Build asynchronous GitHub REST client using httpx with rate-limit and pagination handling.
+- [x] Add secure configuration in core/config.py and .env.example (no hardcoded tokens).
+- [x] Implement endpoints for repository summary, workflow runs list, single run details, and job step tracking.
+- [x] Verify live integration against PipelineSage-demo (5 real workflow runs ingested).
 
-### Phase 5: Intelligent Log Parser & Error Extraction
-- **Goal**: Transform raw, multi-thousand-line CI log streams into structured diagnostic records.
-- **Key Modules**:
-  - `backend/app/analyzers/log_parser.py`: Multi-stage regex and parser isolating failed step, ANSI stripping, stack trace identification, and error frame extraction.
-- **Verification**: Unit tests on simulated and real GitHub Actions logs covering 7 major error categories.
+### Phase 5: Intelligent Log Parser & Error Extraction [Completed]
+- [x] Implement pure Python LogParser extracting dynamic exceptions, parameterized tests, and stack frames.
+- [x] Implement get_job_raw_logs with explicit 302 redirect interception and strict boundary hostname validation.
+- [x] Enforce 5 MB chunked streaming ceiling with is_truncated flagging and safe UTF-8 decoding.
+- [x] Implement stateless POST /api/v1/parser/parse and orchestrated GET /api/v1/parser/jobs/{job_id}.
+- [x] Add comprehensive security test suite verifying rejection of domain bypasses, ports, and credentials.
 
 ### Phase 6: Failure Classifier (Rule-Based & TF-IDF Baseline)
 - **Goal**: Categorize extracted errors into a taxonomy.

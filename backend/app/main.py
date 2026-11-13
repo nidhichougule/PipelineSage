@@ -7,7 +7,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.core.config import get_settings
 from app.models.schemas import ErrorResponse
+from app.routes.github import router as github_router
 from app.routes.health import router as health_router
+from app.routes.log_parser import router as parser_router
 from app.routes.root import router as root_router
 from app.utils.logger import logger
 
@@ -89,6 +91,8 @@ def create_application() -> FastAPI:
     # Register Route Handlers
     app.include_router(root_router)
     app.include_router(health_router)
+    app.include_router(github_router)
+    app.include_router(parser_router)
 
     return app
 
