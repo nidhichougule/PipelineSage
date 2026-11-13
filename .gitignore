@@ -1,0 +1,67 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Node & Frontend
+node_modules/
+frontend/dist/
+frontend/build/
+.npm
+.vite/
+*.tsbuildinfo
+
+# Databases & Local Storage
+*.sqlite3
+*.db
+postgres_data/
+
+# Logs & Monitoring
+*.log
+logs/
+prometheus_data/
+
+# OS & Editor
+test_write.txt
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
